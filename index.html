@@ -1,0 +1,591 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth h-full">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KZ SCRIPTZ - Ultimate Roblox Android Executor & Keyless Scripts</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        darkBg: '#090a0f',
+                        cardBg: 'rgba(20, 22, 32, 0.6)',
+                        cardBorder: 'rgba(239, 68, 68, 0.25)',
+                        neonRed: '#ef4444',
+                        neonCrimson: '#dc2626',
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        mono: ['JetBrains Mono', 'monospace'],
+                    },
+                    boxShadow: {
+                        'glow-red': '0 0 35px -5px rgba(239, 68, 68, 0.5)',
+                        'glow-white': '0 0 25px -5px rgba(255, 255, 255, 0.3)',
+                    },
+                    screens: {
+                        '3xl': '1792px',
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        html, body {
+            width: 100%;
+            min-height: 100%;
+            margin: 0;
+            padding: 0;
+            background-color: #08090d;
+            font-family: 'Inter', sans-serif;
+            color: #f3f4f6;
+            overflow-x: hidden;
+        }
+
+        .glass-card {
+            background: rgba(18, 20, 29, 0.7);
+            backdrop-filter: blur(14px);
+            -webkit-backdrop-filter: blur(14px);
+            border: 1px solid rgba(239, 68, 68, 0.25);
+        }
+
+        .glass-card:hover {
+            border-color: rgba(239, 68, 68, 0.55);
+        }
+
+        .text-glow {
+            text-shadow: 0 0 25px rgba(239, 68, 68, 0.85);
+        }
+
+        .glow-blob {
+            position: absolute;
+            filter: blur(120px);
+            opacity: 0.35;
+            border-radius: 50%;
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #08090d;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #232738;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #ef4444;
+        }
+    </style>
+</head>
+<body class="relative min-h-screen w-full flex flex-col justify-between selection:bg-red-600 selection:text-white">
+
+    <!-- Glowing Background Ambient Spheres -->
+    <div class="glow-blob bg-red-600 w-80 h-80 lg:w-[600px] lg:h-[600px] top-[-150px] left-[-150px]"></div>
+    <div class="glow-blob bg-rose-700 w-72 h-72 lg:w-[500px] lg:h-[500px] top-[35%] right-[-150px]"></div>
+    <div class="glow-blob bg-red-900 w-[350px] h-[350px] lg:w-[700px] lg:h-[700px] bottom-[-200px] left-[20%]"></div>
+
+    <!-- Navigation Header -->
+    <header class="sticky top-0 z-50 w-full glass-card border-b border-white/10 bg-opacity-80">
+        <div class="w-full max-w-[1800px] mx-auto px-4 sm:px-8 lg:px-12 h-16 sm:h-20 flex items-center justify-between">
+            
+            <!-- Logo Branding -->
+            <a href="#" class="flex items-center gap-3 group">
+                <div class="relative w-10 h-10 sm:w-12 sm:h-12 rounded-xl overflow-hidden border border-red-500/40 shadow-glow-red group-hover:scale-105 transition-transform duration-300 bg-black flex items-center justify-center shrink-0">
+                    <img 
+                        src="https://i.postimg.cc/TPjBTpG9/IMG-20261020-191214.jpg" 
+                        alt="KZ SCRIPTZ Logo" 
+                        class="w-full h-full object-cover"
+                        onerror="this.onerror=null; this.src='https://placehold.co/100x100/000000/ef4444?text=KZ';"
+                    />
+                </div>
+                <span class="text-xl sm:text-2xl font-black tracking-widest text-white group-hover:text-red-500 transition-colors uppercase">
+                    KZ<span class="text-red-500">SCRIPTZ</span>
+                </span>
+            </a>
+
+            <!-- Desktop Nav Menu -->
+            <nav class="hidden md:flex items-center gap-8 lg:gap-12 text-sm lg:text-base font-semibold text-gray-300">
+                <a href="#home" class="hover:text-red-400 transition-colors">Home</a>
+                <a href="#features" class="hover:text-red-400 transition-colors">Features</a>
+                <a href="#download" class="hover:text-red-400 transition-colors">Scripts & APK</a>
+                <a href="#faq" class="hover:text-red-400 transition-colors">FAQ</a>
+            </nav>
+
+            <!-- Desktop Header Buttons (YouTube + Discord side-by-side) -->
+            <div class="hidden md:flex items-center gap-3 lg:gap-4">
+                <a href="https://youtube.com/@reflect_p2x?si=kLqKqqIIClXk8i5U" target="_blank" rel="noopener noreferrer" class="flex items-center gap-2 px-4 py-2.5 rounded-xl bg-red-600 hover:bg-red-700 text-white transition-all shadow-glow-red font-semibold text-sm">
+                    <i class="fa-brands fa-youtube text-lg"></i>
+                    <span>YouTube</span>
+                </a>
+                <a href="https://discord.gg/RXQcgVhe" target="_blank" rel="noopener noreferrer" class="flex items-center gap-2 px-4 py-2.5 rounded-xl bg-red-600/20 text-red-300 border border-red-500/40 hover:bg-red-600 hover:text-white transition-all shadow-sm font-semibold text-sm">
+                    <i class="fa-brands fa-discord text-lg"></i>
+                    <span>Discord</span>
+                </a>
+            </div>
+
+            <!-- Mobile Hamburger Button -->
+            <button id="mobile-menu-btn" class="md:hidden text-gray-300 hover:text-white text-2xl focus:outline-none p-2" aria-label="Toggle Navigation Menu">
+                <i class="fa-solid fa-bars" id="menu-icon"></i>
+            </button>
+        </div>
+
+        <!-- Mobile Menu Drawer -->
+        <div id="mobile-menu" class="hidden md:hidden glass-card border-t border-white/10 px-6 py-6 space-y-4">
+            <a href="#home" class="mobile-link block text-gray-300 hover:text-red-400 font-semibold text-base py-1.5">Home</a>
+            <a href="#features" class="mobile-link block text-gray-300 hover:text-red-400 font-semibold text-base py-1.5">Features</a>
+            <a href="#download" class="mobile-link block text-gray-300 hover:text-red-400 font-semibold text-base py-1.5">Scripts & APK</a>
+            <a href="#faq" class="mobile-link block text-gray-300 hover:text-red-400 font-semibold text-base py-1.5">FAQ</a>
+            
+            <div class="pt-4 space-y-3 border-t border-white/10">
+                <a href="https://youtube.com/@reflect_p2x?si=kLqKqqIIClXk8i5U" target="_blank" rel="noopener noreferrer" class="flex items-center justify-center gap-3 w-full py-3 rounded-xl bg-red-600 text-white font-bold text-sm shadow-glow-red">
+                    <i class="fa-brands fa-youtube text-xl"></i> YouTube Channel
+                </a>
+                <a href="https://discord.gg/RXQcgVhe" target="_blank" rel="noopener noreferrer" class="flex items-center justify-center gap-3 w-full py-3 rounded-xl bg-red-600/20 text-red-300 border border-red-500/40 font-bold text-sm">
+                    <i class="fa-brands fa-discord text-xl"></i> Join Discord
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Container -->
+    <main class="w-full flex-1">
+
+        <!-- Hero Section (Expanded width for Desktop) -->
+        <section id="home" class="relative z-10 pt-12 pb-20 md:pt-24 md:pb-32 w-full max-w-[1800px] mx-auto px-4 sm:px-8 lg:px-12">
+            <div class="grid lg:grid-cols-12 gap-8 lg:gap-16 items-center">
+                
+                <!-- Left Hero Text Content -->
+                <div class="lg:col-span-7 space-y-6 sm:space-y-8 text-center lg:text-left">
+                    <div class="inline-flex items-center gap-2.5 px-4 py-2 rounded-full glass-card border-red-500/30 text-xs sm:text-sm font-semibold tracking-wide text-red-400 uppercase">
+                        <span class="w-2.5 h-2.5 rounded-full bg-red-500 animate-pulse"></span>
+                        Updated for Latest Roblox Mobile Engine
+                    </div>
+
+                    <h1 class="text-3xl sm:text-5xl xl:text-6xl 2xl:text-7xl font-black text-white leading-tight tracking-tight">
+                        The Ultimate <span class="text-transparent bg-clip-text bg-gradient-to-r from-red-500 via-rose-400 to-white text-glow">KZ Android Executor</span> & Keyless Script Hub
+                    </h1>
+
+                    <p class="text-sm sm:text-lg xl:text-xl text-gray-300 max-w-3xl mx-auto lg:mx-0 leading-relaxed">
+                        Experience ultra-fast, stable, and secure Roblox mobile script execution. Complete tasks seamlessly to unlock the latest Delta Executor or copy keyless scripts instantly.
+                    </p>
+
+                    <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 pt-2">
+                        <a href="#download" class="w-full sm:w-auto px-8 py-4 rounded-xl bg-gradient-to-r from-red-600 via-rose-600 to-red-700 hover:opacity-90 text-white font-bold text-base shadow-glow-red transition-all transform hover:-translate-y-0.5 flex items-center justify-center gap-3">
+                            <i class="fa-solid fa-download text-lg"></i> Get Delta APK & KZ Scripts
+                        </a>
+                        <a href="https://discord.gg/RXQcgVhe" target="_blank" rel="noopener noreferrer" class="w-full sm:w-auto px-8 py-4 rounded-xl glass-card hover:bg-white/10 text-gray-200 hover:text-white font-bold text-base transition-all flex items-center justify-center gap-3 border border-white/10">
+                            <i class="fa-brands fa-discord text-red-400 text-xl"></i> Join Discord
+                        </a>
+                    </div>
+
+                    <!-- Statistics / Badges -->
+                    <div class="pt-8 grid grid-cols-3 gap-4 border-t border-white/10 text-center lg:text-left">
+                        <div>
+                            <p class="text-2xl sm:text-3xl xl:text-4xl font-extrabold text-white">100%</p>
+                            <p class="text-xs sm:text-sm text-gray-400 font-medium mt-1">Keyless Scripts</p>
+                        </div>
+                        <div>
+                            <p class="text-2xl sm:text-3xl xl:text-4xl font-extrabold text-red-500">99.9%</p>
+                            <p class="text-xs sm:text-sm text-gray-400 font-medium mt-1">Execution Stability</p>
+                        </div>
+                        <div>
+                            <p class="text-2xl sm:text-3xl xl:text-4xl font-extrabold text-white">Safe</p>
+                            <p class="text-xs sm:text-sm text-gray-400 font-medium mt-1">Anti-Ban Security</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right Interactive Code Preview Block -->
+                <div class="lg:col-span-5 w-full">
+                    <div class="glass-card rounded-2xl overflow-hidden shadow-2xl border border-red-500/30 relative">
+                        <div class="px-5 py-3.5 bg-gray-950 border-b border-white/10 flex items-center justify-between">
+                            <div class="flex items-center gap-2">
+                                <span class="w-3 h-3 rounded-full bg-red-500 inline-block"></span>
+                                <span class="w-3 h-3 rounded-full bg-yellow-500 inline-block"></span>
+                                <span class="w-3 h-3 rounded-full bg-green-500 inline-block"></span>
+                                <span class="text-xs sm:text-sm text-gray-400 font-mono ml-2">kz_hub_v2.lua</span>
+                            </div>
+                            <span class="text-xs font-mono bg-red-500/20 text-red-400 px-2.5 py-0.5 rounded border border-red-500/30">Keyless</span>
+                        </div>
+
+                        <div class="p-5 font-mono text-xs sm:text-sm text-gray-300 bg-black/80 space-y-3 overflow-x-auto leading-relaxed">
+                            <p class="text-gray-500">-- KZ Scriptz Universal Hub v2.4</p>
+                            <p><span class="text-red-400">getgenv</span>().KZSettings = {</p>
+                            <p class="pl-4"><span class="text-red-300">AutoFarm</span> = <span class="text-white">true</span>,</p>
+                            <p class="pl-4"><span class="text-red-300">FastAttack</span> = <span class="text-white">true</span>,</p>
+                            <p class="pl-4"><span class="text-red-300">KeylessBypass</span> = <span class="text-white">true</span></p>
+                            <p>}</p>
+                            <p class="text-red-400">loadstring</p>
+                            <p class="text-yellow-300 break-all">game:HttpGet(<span class="text-red-300">"https://raw.githubusercontent.com/KZScriptz/Main/main/hub.lua"</span>))()</p>
+                        </div>
+
+                        <div class="p-4 bg-gray-950/90 border-t border-white/10 flex items-center justify-between gap-3">
+                            <div class="flex items-center gap-2 text-xs sm:text-sm text-emerald-400 font-medium">
+                                <i class="fa-solid fa-shield-halved"></i> Undetected & Verified
+                            </div>
+                            <button onclick="copyToClipboard('loadstring(game:HttpGet(\'https://raw.githubusercontent.com/KZScriptz/Main/main/hub.lua\'))()')" class="px-4 py-2 text-xs sm:text-sm rounded-lg bg-red-600/30 hover:bg-red-600 text-red-200 hover:text-white border border-red-500/40 transition-all flex items-center gap-2 font-semibold">
+                                <i class="fa-regular fa-copy"></i> Copy Loadstring
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- Features Section -->
+        <section id="features" class="relative z-10 py-16 sm:py-24 bg-black/40 border-y border-white/5 w-full">
+            <div class="max-w-[1800px] mx-auto px-4 sm:px-8 lg:px-12">
+                <div class="text-center max-w-3xl mx-auto mb-12 sm:mb-20 space-y-3">
+                    <span class="text-xs sm:text-sm font-semibold uppercase tracking-widest text-red-500">Why Choose KZ Scriptz</span>
+                    <h2 class="text-3xl sm:text-5xl font-extrabold text-white">
+                        Designed for <span class="text-transparent bg-clip-text bg-gradient-to-r from-red-500 to-white">Ultimate Roblox Execution</span>
+                    </h2>
+                    <p class="text-sm sm:text-base text-gray-400">Lightweight, bypass-ready, and built to perform across all mobile devices.</p>
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8">
+                    <div class="glass-card p-6 sm:p-8 rounded-2xl transition-all duration-300 hover:-translate-y-1">
+                        <div class="w-12 h-12 rounded-xl bg-red-500/10 border border-red-500/30 flex items-center justify-center text-red-500 text-2xl mb-5">
+                            <i class="fa-solid fa-key"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-white mb-2">Keyless Access</h3>
+                        <p class="text-gray-400 text-sm leading-relaxed">No confusing linkvertise steps or keys. Execute scripts right away without waiting.</p>
+                    </div>
+
+                    <div class="glass-card p-6 sm:p-8 rounded-2xl transition-all duration-300 hover:-translate-y-1">
+                        <div class="w-12 h-12 rounded-xl bg-red-500/10 border border-red-500/30 flex items-center justify-center text-red-400 text-2xl mb-5">
+                            <i class="fa-solid fa-bolt"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-white mb-2">High FPS Execution</h3>
+                        <p class="text-gray-400 text-sm leading-relaxed">Smooth floating mobile overlay menu engineered for high frame rates and quick toggles.</p>
+                    </div>
+
+                    <div class="glass-card p-6 sm:p-8 rounded-2xl transition-all duration-300 hover:-translate-y-1">
+                        <div class="w-12 h-12 rounded-xl bg-red-500/10 border border-red-500/30 flex items-center justify-center text-red-500 text-2xl mb-5">
+                            <i class="fa-solid fa-user-shield"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-white mb-2">Anti-Ban Protection</h3>
+                        <p class="text-gray-400 text-sm leading-relaxed">Equipped with internal bypass features to keep your account safe while using features.</p>
+                    </div>
+
+                    <div class="glass-card p-6 sm:p-8 rounded-2xl transition-all duration-300 hover:-translate-y-1">
+                        <div class="w-12 h-12 rounded-xl bg-red-500/10 border border-red-500/30 flex items-center justify-center text-red-400 text-2xl mb-5">
+                            <i class="fa-solid fa-arrows-rotate"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-white mb-2">Always Updated</h3>
+                        <p class="text-gray-400 text-sm leading-relaxed">Regular updates whenever Roblox updates to maintain continuous compatibility.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Download & Task Lock Section -->
+        <section id="download" class="relative z-10 py-16 sm:py-24 w-full max-w-[1800px] mx-auto px-4 sm:px-8 lg:px-12">
+            <div class="text-center max-w-3xl mx-auto mb-12 sm:mb-16 space-y-3">
+                <span class="text-xs sm:text-sm font-semibold uppercase tracking-widest text-red-500">Download Center</span>
+                <h2 class="text-3xl sm:text-5xl font-extrabold text-white">Get Started Now</h2>
+                <p class="text-sm sm:text-base text-gray-400">Complete tasks below to unlock the Delta APK or grab the official KZ Script loadstring.</p>
+            </div>
+
+            <div class="grid lg:grid-cols-2 gap-8 items-stretch">
+                
+                <!-- Box 1: APK Download with Task Lock System -->
+                <div class="glass-card p-6 sm:p-10 rounded-2xl flex flex-col justify-between border-red-500/30">
+                    <div class="space-y-6">
+                        <div class="flex items-center justify-between">
+                            <div class="flex items-center gap-4">
+                                <div class="w-12 h-12 rounded-xl bg-red-600/20 text-red-500 flex items-center justify-center text-2xl shrink-0">
+                                    <i class="fa-brands fa-android"></i>
+                                </div>
+                                <div>
+                                    <h3 class="text-xl sm:text-2xl font-bold text-white">Delta Android Executor</h3>
+                                    <p class="text-xs sm:text-sm text-gray-400">Latest Build • v2.743.1136</p>
+                                </div>
+                            </div>
+                            <div class="flex gap-1.5">
+                                <span id="dot-1" class="w-3 h-3 rounded-full bg-red-600 inline-block"></span>
+                                <span id="dot-2" class="w-3 h-3 rounded-full bg-zinc-700 inline-block"></span>
+                                <span id="dot-3" class="w-3 h-3 rounded-full bg-zinc-700 inline-block"></span>
+                            </div>
+                        </div>
+
+                        <!-- Task Unlock Box -->
+                        <div class="p-5 rounded-xl bg-black/60 border border-red-500/20 space-y-4">
+                            <div class="flex items-center gap-2 text-yellow-500 font-bold text-sm sm:text-base">
+                                <i class="fa-solid fa-lock"></i> ปลดล็อกดาวน์โหลด / Complete Tasks
+                            </div>
+                            <p class="text-xs sm:text-sm text-gray-300">กรุณากดทำภารกิจด้านล่างให้ครบเพื่อแสดงปุ่มดาวน์โหลดไฟล์ APK</p>
+                            
+                            <div class="p-3 rounded-lg bg-zinc-900/90 text-xs text-gray-300 flex items-start gap-2.5 border border-zinc-800">
+                                <i class="fa-brands fa-chrome text-red-500 text-base mt-0.5 shrink-0"></i>
+                                <span>หากกดแล้วไม่ปลดล็อก แนะนำให้คัดลอกลิงก์ไปเปิดใช้งานบนเบราว์เซอร์ **Google Chrome** แล้วลองใหม่อีกครั้ง</span>
+                            </div>
+
+                            <!-- Task Buttons -->
+                            <div class="space-y-3 pt-2">
+                                <button id="btn-task-1" onclick="completeTask(1, 'https://example.com/ad1')" class="w-full py-3 px-5 rounded-xl bg-red-600 hover:bg-red-500 font-bold text-sm flex items-center justify-center gap-3 transition-all shadow-glow-red text-white">
+                                    <i class="fa-solid fa-rectangle-ad text-lg"></i> กดดูโฆษณา 1 / Watch ads 1
+                                </button>
+
+                                <button id="btn-task-2" onclick="completeTask(2, 'https://example.com/ad2')" class="w-full py-3 px-5 rounded-xl bg-zinc-800 border border-zinc-700 text-gray-400 font-bold text-sm flex items-center justify-center gap-3 cursor-not-allowed transition-all" disabled>
+                                    <i class="fa-solid fa-rectangle-ad text-lg"></i> กดดูโฆษณา 2 / Watch ads 2
+                                </button>
+
+                                <button id="btn-task-3" onclick="completeTask(3, 'https://youtube.com/@reflect_p2x?si=kLqKqqIIClXk8i5U')" class="w-full py-3 px-5 rounded-xl bg-zinc-800 border border-zinc-700 text-gray-400 font-bold text-sm flex items-center justify-center gap-3 cursor-not-allowed transition-all" disabled>
+                                    <i class="fa-brands fa-youtube text-lg"></i> กดไลค์และคอมเม้นต์ / Like & Comment
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Final Download Link Container -->
+                    <div id="download-container" class="pt-6 hidden">
+                        <a href="https://drive.google.com/file/d/1jT4wgAHGOSEhdVWPLEkYlX2f3OfzBXvA/view?usp=drivesdk" target="_blank" class="w-full py-4 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-extrabold text-base text-center flex items-center justify-center gap-3 transition-all shadow-xl animate-bounce">
+                            <i class="fa-solid fa-download text-xl"></i> ดาวน์โหลด Delta APK (64 MB)
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Box 2: Code Viewer & Script Loadstring -->
+                <div class="glass-card p-6 sm:p-10 rounded-2xl flex flex-col justify-between border-red-500/30">
+                    <div class="space-y-6">
+                        <div class="flex items-center justify-between">
+                            <div class="flex items-center gap-4">
+                                <div class="w-12 h-12 rounded-xl bg-red-600/20 text-red-400 flex items-center justify-center text-2xl shrink-0">
+                                    <i class="fa-solid fa-code"></i>
+                                </div>
+                                <div>
+                                    <h3 class="text-xl sm:text-2xl font-bold text-white">KZ Universal Hub</h3>
+                                    <p class="text-xs sm:text-sm text-gray-400">Keyless Roblox Script</p>
+                                </div>
+                            </div>
+                            <span class="px-3 py-1 rounded-full bg-red-500/10 text-red-400 border border-red-500/20 text-xs font-semibold shrink-0">Official Script</span>
+                        </div>
+
+                        <p class="text-sm text-gray-300 leading-relaxed">
+                            คัดลอกโค้ดด้านล่างนี้แล้วนำไปวางในช่อง Execute ของ Executor เพื่อใช้งาน KZ Hub
+                        </p>
+
+                        <div class="relative bg-black/90 rounded-xl p-4 sm:p-5 border border-white/10 font-mono text-sm text-red-300 overflow-x-auto leading-relaxed">
+                            <code id="loadstring-code" class="block whitespace-pre-wrap break-all">loadstring(game:HttpGet("https://raw.githubusercontent.com/KZScriptz/Main/main/hub.lua"))()</code>
+                        </div>
+                    </div>
+
+                    <div class="pt-8 space-y-3">
+                        <button onclick="copyToClipboard(document.getElementById('loadstring-code').innerText)" class="w-full py-4 rounded-xl bg-gradient-to-r from-red-600 to-rose-700 hover:opacity-90 text-white font-extrabold text-base text-center flex items-center justify-center gap-3 transition-all shadow-glow-red">
+                            <i class="fa-regular fa-copy text-lg"></i> Copy Script Loadstring
+                        </button>
+                        <p class="text-center text-xs text-gray-500">Updated automatically • Zero keys required</p>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- FAQ Section -->
+        <section id="faq" class="relative z-10 py-16 sm:py-24 bg-black/40 border-t border-white/5 w-full">
+            <div class="max-w-5xl mx-auto px-4 sm:px-8 lg:px-12">
+                <div class="text-center mb-12 sm:mb-16 space-y-3">
+                    <span class="text-xs sm:text-sm font-semibold uppercase tracking-widest text-red-500">Support</span>
+                    <h2 class="text-3xl sm:text-5xl font-extrabold text-white">Frequently Asked Questions</h2>
+                </div>
+
+                <div class="space-y-4">
+                    <div class="glass-card rounded-xl border border-white/10 overflow-hidden">
+                        <button onclick="toggleFaq('faq-1')" class="w-full p-5 sm:p-6 text-left flex items-center justify-between text-white font-bold text-base sm:text-lg hover:text-red-400 transition-colors focus:outline-none gap-4">
+                            <span>Is KZ Scriptz completely safe to use?</span>
+                            <i id="icon-faq-1" class="fa-solid fa-chevron-down text-red-400 transition-transform duration-300 shrink-0"></i>
+                        </button>
+                        <div id="faq-1" class="hidden px-5 pb-5 sm:px-6 sm:pb-6 text-sm text-gray-300 leading-relaxed border-t border-white/5 pt-4">
+                            Yes! Our scripts are scanned and tested to guarantee they contain no viruses or harmful code. Always download directly from this official landing page.
+                        </div>
+                    </div>
+
+                    <div class="glass-card rounded-xl border border-white/10 overflow-hidden">
+                        <button onclick="toggleFaq('faq-2')" class="w-full p-5 sm:p-6 text-left flex items-center justify-between text-white font-bold text-base sm:text-lg hover:text-red-400 transition-colors focus:outline-none gap-4">
+                            <span>Does Delta APK work on non-rooted Android devices?</span>
+                            <i id="icon-faq-2" class="fa-solid fa-chevron-down text-red-400 transition-transform duration-300 shrink-0"></i>
+                        </button>
+                        <div id="faq-2" class="hidden px-5 pb-5 sm:px-6 sm:pb-6 text-sm text-gray-300 leading-relaxed border-t border-white/5 pt-4">
+                            Yes, Delta APK functions fully on standard non-rooted phones and Android emulators such as BlueStacks and LDPlayer.
+                        </div>
+                    </div>
+
+                    <div class="glass-card rounded-xl border border-white/10 overflow-hidden">
+                        <button onclick="toggleFaq('faq-3')" class="w-full p-5 sm:p-6 text-left flex items-center justify-between text-white font-bold text-base sm:text-lg hover:text-red-400 transition-colors focus:outline-none gap-4">
+                            <span>Do I need to complete a key system?</span>
+                            <i id="icon-faq-3" class="fa-solid fa-chevron-down text-red-400 transition-transform duration-300 shrink-0"></i>
+                        </button>
+                        <div id="faq-3" class="hidden px-5 pb-5 sm:px-6 sm:pb-6 text-sm text-gray-300 leading-relaxed border-t border-white/5 pt-4">
+                            No, KZ Scripts featured here are 100% keyless! Once you execute the loadstring, the hub menu opens instantly.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="relative z-10 w-full glass-card border-t border-white/10 py-8 sm:py-12">
+        <div class="max-w-[1800px] mx-auto px-4 sm:px-8 lg:px-12 flex flex-col md:flex-row items-center justify-between gap-6">
+            <div class="flex items-center gap-3">
+                <div class="relative w-10 h-10 rounded-xl overflow-hidden border border-red-500/40 bg-black flex items-center justify-center shrink-0">
+                    <img 
+                        src="https://i.postimg.cc/TPjBTpG9/IMG-20261020-191214.jpg" 
+                        alt="KZ SCRIPTZ Logo" 
+                        class="w-full h-full object-cover"
+                        onerror="this.onerror=null; this.src='https://placehold.co/100x100/000000/ef4444?text=KZ';"
+                    />
+                </div>
+                <span class="text-xl font-black tracking-widest text-white uppercase">KZ<span class="text-red-500">SCRIPTZ</span></span>
+            </div>
+
+            <p class="text-xs text-gray-400 text-center">
+                © 2026 KZ Scriptz. All rights reserved. Disclaimer: We are not affiliated with Roblox Corporation.
+            </p>
+
+            <div class="flex items-center gap-6 text-gray-400 text-xl">
+                <a href="https://youtube.com/@reflect_p2x?si=kLqKqqIIClXk8i5U" target="_blank" rel="noopener noreferrer" class="hover:text-red-400 transition-colors"><i class="fa-brands fa-youtube"></i></a>
+                <a href="https://discord.gg/RXQcgVhe" target="_blank" rel="noopener noreferrer" class="hover:text-red-400 transition-colors"><i class="fa-brands fa-discord"></i></a>
+                <a href="#" class="hover:text-red-400 transition-colors"><i class="fa-brands fa-github"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Toast Notification Widget -->
+    <div id="toast" class="fixed bottom-6 right-6 z-50 transform translate-y-20 opacity-0 transition-all duration-300 glass-card bg-red-950/90 border border-red-500/50 px-5 py-3.5 rounded-xl text-white text-sm font-semibold flex items-center gap-3 shadow-2xl">
+        <i class="fa-solid fa-circle-check text-red-400 text-lg"></i>
+        <span id="toast-message">Copied to clipboard!</span>
+    </div>
+
+    <!-- JavaScript Interactions -->
+    <script>
+        let completedCount = 0;
+
+        function completeTask(taskNumber, redirectUrl) {
+            window.open(redirectUrl, '_blank');
+
+            if (taskNumber === 1 && completedCount === 0) {
+                completedCount = 1;
+                const btn1 = document.getElementById('btn-task-1');
+                btn1.className = "w-full py-3 px-5 rounded-xl bg-emerald-600/20 border border-emerald-500 text-emerald-400 font-bold text-sm flex items-center justify-center gap-3";
+                btn1.innerHTML = `<i class="fa-solid fa-check text-lg"></i> สำเร็จแล้ว (Ads 1)`;
+                document.getElementById('dot-1').className = "w-3 h-3 rounded-full bg-emerald-500 inline-block";
+
+                const btn2 = document.getElementById('btn-task-2');
+                btn2.disabled = false;
+                btn2.className = "w-full py-3 px-5 rounded-xl bg-red-600 hover:bg-red-500 text-white font-bold text-sm flex items-center justify-center gap-3 shadow-glow-red transition-all";
+                document.getElementById('dot-2').className = "w-3 h-3 rounded-full bg-red-600 inline-block";
+
+            } else if (taskNumber === 2 && completedCount === 1) {
+                completedCount = 2;
+                const btn2 = document.getElementById('btn-task-2');
+                btn2.className = "w-full py-3 px-5 rounded-xl bg-emerald-600/20 border border-emerald-500 text-emerald-400 font-bold text-sm flex items-center justify-center gap-3";
+                btn2.innerHTML = `<i class="fa-solid fa-check text-lg"></i> สำเร็จแล้ว (Ads 2)`;
+                document.getElementById('dot-2').className = "w-3 h-3 rounded-full bg-emerald-500 inline-block";
+
+                const btn3 = document.getElementById('btn-task-3');
+                btn3.disabled = false;
+                btn3.className = "w-full py-3 px-5 rounded-xl bg-red-600 hover:bg-red-500 text-white font-bold text-sm flex items-center justify-center gap-3 shadow-glow-red transition-all";
+                document.getElementById('dot-3').className = "w-3 h-3 rounded-full bg-red-600 inline-block";
+
+            } else if (taskNumber === 3 && completedCount === 2) {
+                completedCount = 3;
+                const btn3 = document.getElementById('btn-task-3');
+                btn3.className = "w-full py-3 px-5 rounded-xl bg-emerald-600/20 border border-emerald-500 text-emerald-400 font-bold text-sm flex items-center justify-center gap-3";
+                btn3.innerHTML = `<i class="fa-solid fa-check text-lg"></i> สำเร็จแล้ว`;
+                document.getElementById('dot-3').className = "w-3 h-3 rounded-full bg-emerald-500 inline-block";
+
+                document.getElementById('download-container').classList.remove('hidden');
+                showToast("ปลดล็อกปุ่มดาวน์โหลดเรียบร้อยแล้ว!");
+            }
+        }
+
+        function copyToClipboard(text) {
+            if (navigator.clipboard && window.isSecureContext) {
+                navigator.clipboard.writeText(text).then(() => {
+                    showToast("Script copied to clipboard!");
+                }).catch(() => {
+                    fallbackCopy(text);
+                });
+            } else {
+                fallbackCopy(text);
+            }
+        }
+
+        function fallbackCopy(text) {
+            const textArea = document.createElement("textarea");
+            textArea.value = text;
+            textArea.style.position = "fixed";
+            textArea.style.opacity = "0";
+            document.body.appendChild(textArea);
+            textArea.focus();
+            textArea.select();
+            try {
+                document.execCommand('copy');
+                showToast("Script copied to clipboard!");
+            } catch (err) {
+                showToast("Failed to copy code.");
+            }
+            document.body.removeChild(textArea);
+        }
+
+        function showToast(message) {
+            const toast = document.getElementById('toast');
+            const toastMsg = document.getElementById('toast-message');
+            toastMsg.innerText = message;
+            
+            toast.classList.remove('translate-y-20', 'opacity-0');
+            toast.classList.add('translate-y-0', 'opacity-100');
+
+            setTimeout(() => {
+                toast.classList.remove('translate-y-0', 'opacity-100');
+                toast.classList.add('translate-y-20', 'opacity-0');
+            }, 3000);
+        }
+
+        function toggleFaq(id) {
+            const content = document.getElementById(id);
+            const icon = document.getElementById('icon-' + id);
+            
+            if (content.classList.contains('hidden')) {
+                content.classList.remove('hidden');
+                icon.classList.add('rotate-180');
+            } else {
+                content.classList.add('hidden');
+                icon.classList.remove('rotate-180');
+            }
+        }
+
+        const mobileBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const mobileLinks = document.querySelectorAll('.mobile-link');
+
+        mobileBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+            });
+        });
+    </script>
+</body>
+</html>
